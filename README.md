@@ -1,8 +1,46 @@
 # Lab: Build a Database MCP Server with FastMCP and SQLite
 
-## Submission
+## Thông tin sinh viên
 
-Complete implementation: [`implementation/`](implementation/) — setup, tests, Inspector screenshots, and bonus features (SSE auth + PostgreSQL adapter).
+| | |
+|---|---|
+| **Họ và tên** | Nguyễn Văn Chung |
+| **MSSV** | 2A202900647 |
+| **Môn / Lab** | Day 26 — Track 3: MCP Tool Integration |
+| **Repository** | [github.com/vanchungnguyxn/Day26-Track3-MCP-tool-integration](https://github.com/vanchungnguyxn/Day26-Track3-MCP-tool-integration) |
+
+## Bài nộp (Submission)
+
+Bài làm hoàn chỉnh nằm trong thư mục [`implementation/`](implementation/).
+
+### Tóm tắt nội dung đã làm
+
+| Hạng mục | Trạng thái | Chi tiết |
+|----------|------------|----------|
+| FastMCP server | ✅ | `mcp_server.py` — stdio, SSE, HTTP |
+| SQLite + seed data | ✅ | `init_db.py` — bảng `students`, `courses`, `enrollments` |
+| Tool `search` | ✅ | Filter, sort, pagination |
+| Tool `insert` | ✅ | Trả về row vừa insert |
+| Tool `aggregate` | ✅ | `count`, `avg`, `sum`, `min`, `max` |
+| Resource schema | ✅ | `schema://database`, `schema://table/{table_name}` |
+| Validation & SQL an toàn | ✅ | Parameterized queries, reject input sai |
+| Verification | ✅ | `verify_server.py` (8/8), `run_tests.bat` (13/13) |
+| MCP client | ✅ | MCP Inspector + screenshots trong `demo-screenshots/` |
+| Client config | ✅ | `.mcp.json` (Claude Code) |
+| **Bonus SSE auth** | ✅ | `start_sse_server.bat`, `verify_sse_auth.py` |
+| **Bonus PostgreSQL** | ✅ | `postgres_db.py`, `adapter_factory.py` |
+
+### Chạy nhanh
+
+```powershell
+cd implementation
+pip install -r requirements.txt
+python init_db.py
+python verify_server.py
+.\start_inspector.bat
+```
+
+Tài liệu chi tiết: [`implementation/README.md`](implementation/README.md)
 
 ## Goal
 

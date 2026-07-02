@@ -1,6 +1,79 @@
-# SQLite Lab MCP Server - Implementation
+# SQLite Lab MCP Server — Bài nộp Lab MCP
 
-FastMCP server exposing a SQLite database through `search`, `insert`, and `aggregate` tools, plus schema resources.
+**Sinh viên:** Nguyễn Văn Chung  
+**MSSV:** 2A202900647  
+**Lab:** Day 26 — Track 3: MCP Tool Integration  
+**GitHub:** [vanchungnguyxn/Day26-Track3-MCP-tool-integration](https://github.com/vanchungnguyxn/Day26-Track3-MCP-tool-integration)
+
+---
+
+FastMCP server kết nối SQLite (hoặc PostgreSQL) qua các tool `search`, `insert`, `aggregate` và schema resources.
+
+## Tổng quan bài làm
+
+### Kiến trúc
+
+```text
+implementation/
+  base_db.py            # Logic chung + validation
+  db.py                 # SQLiteAdapter
+  postgres_db.py        # PostgreSQLAdapter (bonus)
+  adapter_factory.py    # Chọn backend qua DB_BACKEND
+  init_db.py            # Schema + seed SQLite
+  mcp_server.py         # FastMCP server (stdio / SSE / HTTP)
+  verify_server.py      # Kiểm tra tự động 8 bước
+  verify_sse_auth.py    # Kiểm tra bonus SSE + bearer auth
+  demo_tools.py         # Demo terminal không cần Inspector
+  demo-screenshots/     # 5 ảnh MCP Inspector
+  tests/test_server.py  # 13 unit/integration tests
+```
+
+### Database
+
+Ba bảng quan hệ:
+
+| Bảng | Cột chính |
+|------|-----------|
+| `students` | `id`, `name`, `cohort`, `score` |
+| `courses` | `id`, `title`, `instructor` |
+| `enrollments` | `id`, `student_id`, `course_id`, `grade` |
+
+### MCP Tools
+
+| Tool | Chức năng |
+|------|-----------|
+| `search` | Query có filter, sort, pagination |
+| `insert` | Thêm row, trả payload đã insert |
+| `aggregate` | `count` / `avg` / `sum` / `min` / `max`, hỗ trợ `group_by` |
+
+### MCP Resources
+
+| URI | Mô tả |
+|-----|--------|
+| `schema://database` | Toàn bộ schema |
+| `schema://table/{table_name}` | Schema từng bảng (vd. `schema://table/students`) |
+
+### Kết quả kiểm tra
+
+| Lệnh | Kết quả |
+|------|---------|
+| `python verify_server.py` | 8/8 PASS |
+| `.\run_tests.bat` | 13/13 PASS |
+| `python verify_sse_auth.py` | 3/3 PASS (bonus) |
+| MCP Inspector | Screenshots trong [`demo-screenshots/`](demo-screenshots/) |
+
+### Bonus (+10 điểm)
+
+| Tính năng | File liên quan |
+|-----------|----------------|
+| SSE + Bearer auth | `start_sse_server.bat`, `MCP_API_KEY`, `verify_sse_auth.py` |
+| SQLite + PostgreSQL | `base_db.py`, `postgres_db.py`, `adapter_factory.py` |
+| Polish | `demo_tools.py`, tests, pagination metadata |
+
+Chi tiết bonus: [`BONUS.md`](BONUS.md)  
+Bằng chứng MCP client: [`CLIENT_VERIFICATION.md`](CLIENT_VERIFICATION.md)
+
+---
 
 ## Project Structure
 
