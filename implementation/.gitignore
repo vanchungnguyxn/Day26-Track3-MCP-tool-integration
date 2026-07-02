@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.npm-cache/
+lab.db
+*.db
+sse_err.txt
+sse_out.txt
