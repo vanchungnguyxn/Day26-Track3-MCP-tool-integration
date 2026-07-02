@@ -1,5 +1,5 @@
 """Verify SSE transport with bearer-token auth (bonus feature)."""
-
+""
 from __future__ import annotations
 
 import asyncio

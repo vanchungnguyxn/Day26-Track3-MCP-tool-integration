@@ -1,7 +1,5 @@
 # Lab: Build a Database MCP Server with FastMCP and SQLite
 
-## Thông tin sinh viên
-
 | | |
 |---|---|
 | **Họ và tên** | Nguyễn Văn Chung |
